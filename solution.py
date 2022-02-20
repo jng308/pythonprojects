@@ -9,12 +9,12 @@ def webServer(port=13331):
     # Prepare a server socket
     serverSocket.bind(("", port))
     # Fill in start
-
+    serverSocket.listen(1)
     # Fill in end
     while True:
         # Establish the connection
         # print('Ready to serve...')
-        connectionSocket, addr =  # Fill in start      #Fill in end
+        connectionSocket, addr =  serverSocket.accept()
         try:
             try:
                 message =  # Fill in start    #Fill in end
@@ -29,7 +29,7 @@ def webServer(port=13331):
                     connectionSocket.send(outputdata[i].encode())
                 connectionSocket.send("\r\n".encode())
                 connectionSocket.close()
-            except IOError:
+            except IOError: 404
         # Send response message for file not found (404)
         # Fill in start
         # Fill in end

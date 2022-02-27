@@ -50,7 +50,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send DATA command and print server response.
 
-    DATACommand = 'DATA'
+    DATACommand = 'DATA \r\n'
     clientSocket.send(DATACommand.encode())
     recv4 = clientSocket.recv(1024).decode()
     #print(recv1)
@@ -70,7 +70,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Message ends with a single period.
 
-    PeriodCommand = '.'
+    PeriodCommand = '. \r\n'
     clientSocket.send(PeriodCommand.encode())
     recv6 = clientSocket.recv(1024).decode()
     #print(recv1)
@@ -80,7 +80,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send QUIT command and get server response.
     # Fill in start
-    QuitCommand = 'QUIT'
+    QuitCommand = 'QUIT \r\n'
     clientSocket.send(QuitCommand.encode())
     recv7 = clientSocket.recv(1024).decode()
     #print(recv1)
@@ -92,7 +92,5 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
 if __name__ == '__main__':
     smtp_client(1025, '127.0.0.1')
-SMTP_Server_skeleton.py
-Displaying SMTP_Server_skeleton.py.
 
 

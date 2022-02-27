@@ -44,7 +44,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
     # Send RCPT TO command and print server response.
 
-    RCPTCommand = 'RCPT TO: <jakeg@gmail.com> \r\n'
+    RCPTCommand = 'RCPT TO: <> \r\n'
     clientSocket.send(RCPTCommand.encode())
     recv3 = clientSocket.recv(1024).decode()
     #print(recv1)
@@ -99,4 +99,4 @@ if __name__ == '__main__':
 SMTP_Server_skeleton.py
 Displaying SMTP_Server_skeleton.py.
 
-clientSocket.close()
+

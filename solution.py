@@ -12,7 +12,7 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
 
     clientSocket = socket(AF_INET, SOCK_STREAM)
-    clientSocket.connect(mailserver, port)
+    clientSocket.connect('127.0.0.1', 1025)
 
 
     recv = clientSocket.recv(1024).decode()
@@ -79,14 +79,14 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
 
 
     # Send QUIT command and get server response.
-    
+    # Fill in start
     QuitCommand = 'QUIT'
     clientSocket.send(QuitCommand.encode())
     recv1 = clientSocket.recv(1024).decode()
     print(recv1)
     if recv1[:3] != '250':
         print('250 reply not received from server.')
-    
+    # Fill in end
 
 
 if __name__ == '__main__':

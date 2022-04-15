@@ -48,14 +48,16 @@ def receiveOnePing(mySocket, ID, timeout, destAddr):
         recPacket, addr = mySocket.recvfrom(1024)
 
         # Fill in start
-        icmpHeader = recPacket[20:28]
- icmpType, code, myChecksum, packetID, sequence = struct.unpack("bbHHh",
-icmpHeader)
- if icmpType != 8 and packetID == ID:
- bytesInDouble = struct.calcsize("d")
-timeSent = struct.unpack("d", recPacket[28:28 + bytesInDouble])[0]
- rtt = (timeReceived - timeSent) * 1000
- return rtt
+        header = recPacket[20: 28]
+        type, code, checksum, packetID, sequence = struct.unpack("!bbHHh", header)
+        if type == 0 and packetID == ID:  # type should be 0
+            byte_in_double = struct.calcsize("!d")
+        timeSent = struct.unpack("!d", recPacket[28: 28 + byte_in_double])[0]
+        delay = (timeReceived - timeSent) * 1000
+        ttl = ord(struct.unpack("!c", recPacket[8:9])[0].decode())
+        return (delay, ttl, byte_in_double)
+        # Fetch the ICMP header from the IP packet
+
         # Fill in end
         timeLeft = timeLeft - howLongInSelect
         if timeLeft <= 0:
@@ -106,15 +108,15 @@ def doOnePing(destAddr, timeout):
 def ping(host, timeout=1):
     # timeout=1 means: If one second goes by without a reply from the server,      # the client assumes that either the client's ping or the server's pong is lost
     dest = gethostbyname(host)
-    print("Pinging " + dest + " using Python:")
-    print("")
+    #print("Pinging " + dest + " using Python:")
+    #print("")
 
     # Send ping requests to a server separated by approximately one second
     # Add something here to collect the delays of each ping in a list
     # so you can calculate vars after your ping
     for i in range(0, 4):
         delay = doOnePing(dest, timeout)
-        print(delay)
+        #print(delay)
         time.sleep(1)  # one second
 
     packet_min = min(delay_float)
@@ -122,7 +124,7 @@ def ping(host, timeout=1):
     packet_avg = (sum(delay_float)) / (len(delay_float))
     stdev_var = stdev(delay_float)
     vars = packet_min, packet_avg, packet_max, stdev_var
-    print(vars)
+    #print(vars)
     return vars
 
 

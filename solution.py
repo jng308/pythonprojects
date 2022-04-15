@@ -119,12 +119,6 @@ def ping(host, timeout=1):
         #print(delay)
         time.sleep(1)  # one second
 
-    packet_min = min(delay_float)
-    packet_max = max(delay_float)
-    packet_avg = (sum(delay_float)) / (len(delay_float))
-    stdev_var = stdev(delay_float)
-    vars = packet_min, packet_avg, packet_max, stdev_var
-    #print(vars)
     return vars
 
 

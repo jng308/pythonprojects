@@ -124,41 +124,23 @@ def get_route(hostname):
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    stringaddr = str(addr[0])
-                    stringttl = str(ttl)
-                    stringms = str((timeReceived - t) * 1000)
-                    tracelist2.append((stringttl, stringms, stringaddr, hostaddr))
-                    #tracelist2.append((ttl, (timeReceived - t) * 1000, addr[0],
-                    hostaddr))
-                       #print(ttl, " ", (timeReceived - t) * 1000, " ", addr[0], " ",
-                    hostaddr)
-                    # You should add your responses to your lists here
+                    print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - t) * 1000,addr[0]))
+
                     #Fill in end
                 elif request_type == 3:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    stringaddr = str(addr[0])
-                    stringttl = str(ttl)
-                    stringms = str((timeReceived - t) * 1000)
-                    tracelist2.append((stringttl, stringms, stringaddr, hostaddr))
-                    #  tracelist2.append((ttl, (timeReceived - t) * 1000, addr[0],
-                    hostaddr))
-                    #print(ttl, " ", (timeReceived - t) * 1000, " ", addr[0], " ",
-                    hostaddr)
-                    # You should add your responses to your lists here
+                    print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - t) * 1000,addr[0]))
+
                      
                     #Fill in end
                 elif request_type == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    stringaddr = str(addr[0])
-                    stringttl = str(ttl)
-                    stringms = str((timeReceived-t) * 1000)
-                    tracelist2.append((stringttl, stringms, stringaddr, hostaddr))
-                    #print(ttl, " ", (timeReceived - t) * 1000, " ", addr[0], " ",
-                    hostaddr)
+                    print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - timeSent)* 1000, addr[0]))
+
                     
                     #Fill in end
                 else:

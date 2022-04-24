@@ -101,7 +101,7 @@ def get_route(hostname):
                 timeLeft = timeLeft - howLongInSelect
                 if timeLeft <= 0:
                     tracelist1.append("* * * Request timed out.")
-                    tracelist2.append(tracelist1)
+                    
                     #Fill in start
                     print("* * * Request timed out.")
                     #Fill in end

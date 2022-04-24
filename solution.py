@@ -148,10 +148,11 @@ def get_route(hostname):
                     #Fill in start
                     print("error")
                     #Fill in end
-                    return tracelist2
+                    
                 break
             finally:
                 mySocket.close()
+return tracelist2
   
 
 if __name__ == '__main__':

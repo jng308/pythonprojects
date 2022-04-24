@@ -102,7 +102,7 @@ def get_route(hostname):
                     #Fill in start
                     print("* * * Request timed out.")
                     #Fill in end
-            except socket.timeout:
+            except timeout:
                 continue
 
             else:

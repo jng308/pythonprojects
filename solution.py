@@ -140,6 +140,7 @@ def get_route(hostname):
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
                     print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - timeSent)* 1000, addr[0]))
+                    return tracelist2
 
                     
                     #Fill in end
@@ -150,7 +151,7 @@ def get_route(hostname):
                 break
             finally:
                 mySocket.close()
-   # return tracelist2
+  
 
 if __name__ == '__main__':
     get_route("google.co.il")

@@ -109,25 +109,55 @@ def get_route(hostname):
                 icmpHeader = recvPacket[20:28]
                 request_type, code, checksum, packetID, sequence = struct.unpack("bbHHh", icmpHeader)
                 
+            try: # try to fetch the hostname
+                # Fill in start
+                hostaddr = gethostbyaddr(addr[0])[0]
+                
+            except herror: # if the host does not provide a hostname
+                # Fill in start
+                hostaddr = "hostname not returnable"
+
+                
 
                 if request_type == 11:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - t) * 1000, addr[0]))
+                    stringaddr = str(addr[0])
+                    stringttl = str(ttl)
+                    stringms = str((timeReceived - t) * 1000)
+                    tracelist2.append((stringttl, stringms, stringaddr, hostaddr))
+                    #tracelist2.append((ttl, (timeReceived - t) * 1000, addr[0],
+                    hostaddr))
+                       #print(ttl, " ", (timeReceived - t) * 1000, " ", addr[0], " ",
+                    hostaddr)
+                    # You should add your responses to your lists here
                     #Fill in end
                 elif request_type == 3:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - t) * 1000,addr[0]))
+                    stringaddr = str(addr[0])
+                    stringttl = str(ttl)
+                    stringms = str((timeReceived - t) * 1000)
+                    tracelist2.append((stringttl, stringms, stringaddr, hostaddr))
+                    #  tracelist2.append((ttl, (timeReceived - t) * 1000, addr[0],
+                    hostaddr))
+                    #print(ttl, " ", (timeReceived - t) * 1000, " ", addr[0], " ",
+                    hostaddr)
+                    # You should add your responses to your lists here
                      
                     #Fill in end
                 elif request_type == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - timeSent)* 1000, addr[0]))
+                    stringaddr = str(addr[0])
+                    stringttl = str(ttl)
+                    stringms = str((timeReceived-t) * 1000)
+                    tracelist2.append((stringttl, stringms, stringaddr, hostaddr))
+                    #print(ttl, " ", (timeReceived - t) * 1000, " ", addr[0], " ",
+                    hostaddr)
                     
                     #Fill in end
                 else:

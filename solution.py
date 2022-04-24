@@ -103,8 +103,7 @@ def get_route(hostname):
 
             else:
                 icmpHeader = recvPacket[20:28]
-                request_type, code, checksum, packetID, sequence =
-                struct.unpack("bbHHh", icmpHeader)
+                request_type, code, checksum, packetID, sequence = struct.unpack("bbHHh", icmpHeader)
                 try: #try to fetch the hostname
                     #Fill in start
                     #Fill in end
@@ -114,25 +113,23 @@ def get_route(hostname):
 
                 if types == 11:
                     bytes = struct.calcsize("d")
-                    timeSent = struct.unpack("d", recvPacket[28:28 +
-                    bytes])[0]
+                    timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - t) * 1000,
-                    addr[0]))
+                    print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - t) * 1000, addr[0]))
                     #Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - t) * 1000,
-                    addr[0])) 
+                    print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - t) * 1000,addr[0]))
+                     
                     #Fill in end
                 elif types == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
                     #Fill in start
-                    print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - timeSent)
-                    * 1000, addr[0]))
+                    print(" %d rtt=%.0f ms %s" % (ttl, (timeReceived - timeSent)* 1000, addr[0]))
+                    
                     #Fill in end
                 else:
                     #Fill in start

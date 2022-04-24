@@ -6,7 +6,7 @@ import struct
 import time
 import select
 import binascii
-import socket
+
 
 
 
